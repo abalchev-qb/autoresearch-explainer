@@ -18,22 +18,23 @@
                      radial-gradient(900px 500px at -10% 10%,rgba(182,155,255,.07),transparent);}
   a{color:var(--accent);text-decoration:none}
   a:hover{text-decoration:underline}
-  .wrap{max-width:980px;margin:0 auto;padding:0 20px}
-  header.hero{padding:64px 0 28px}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+  header.hero{padding:60px 0 26px}
   .kicker{font:600 12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
   h1{font-size:clamp(28px,5vw,46px);margin:14px 0 10px;line-height:1.05;letter-spacing:-.02em}
   h1 .sub{display:block;color:var(--mut);font-weight:500;font-size:clamp(15px,2.4vw,20px);margin-top:10px;letter-spacing:0}
-  .lede{color:var(--mut);max-width:70ch;font-size:17px}
+  .lede{color:var(--mut);max-width:74ch;font-size:17px}
   section{padding:30px 0;border-top:1px solid var(--line)}
   h2{font-size:24px;margin:0 0 6px;letter-spacing:-.01em}
   h2 .n{color:var(--accent);font:600 14px/1 var(--mono);margin-right:10px;vertical-align:2px}
+  h3{font-size:16px}
   .muted{color:var(--mut)}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
   code,kbd{font-family:var(--mono);font-size:.92em}
   kbd{background:var(--panel2);border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px}
   .pill{display:inline-block;font:600 11px/1 var(--mono);padding:5px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mut)}
+  .lead-in{margin:2px 0 16px}
 
-  /* ---- simulator ---- */
   .sim{display:grid;grid-template-columns:1fr;gap:16px}
   .sim-top{display:grid;grid-template-columns:1.3fr .9fr;gap:16px}
   @media(max-width:760px){.sim-top{grid-template-columns:1fr}}
@@ -46,9 +47,7 @@
   select{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font:600 13px var(--sans)}
   label.tog{display:inline-flex;gap:8px;align-items:center;font:600 13px var(--sans);color:var(--mut);cursor:pointer;
     background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
-  label.tog input{accent-color:var(--green)}
   canvas{width:100%;height:auto;display:block;background:var(--panel2);border-radius:12px;border:1px solid var(--line)}
-
   .phases{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 12px}
   .phase{font:600 11px/1 var(--mono);padding:7px 9px;border-radius:8px;border:1px solid var(--line);color:var(--mut);background:var(--panel2);transition:.15s}
   .phase.active{color:#06121f;background:var(--accent);border-color:transparent;transform:translateY(-1px)}
@@ -61,7 +60,6 @@
   .badge.discard{background:rgba(244,183,64,.14);color:var(--amber);border:1px solid rgba(244,183,64,.4)}
   .badge.crash{background:rgba(255,107,107,.14);color:var(--red);border:1px solid rgba(255,107,107,.4)}
   .badge.leak{background:rgba(255,107,107,.14);color:var(--red);border:1px solid rgba(255,107,107,.5)}
-
   table.log{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px;margin-top:4px}
   table.log th,table.log td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
   table.log th{color:var(--mut);font-weight:600;position:sticky;top:0;background:var(--panel)}
@@ -71,34 +69,50 @@
   .note{font-size:13px;color:var(--mut);margin-top:10px}
   .warn{border-left:3px solid var(--amber);background:rgba(244,183,64,.07);padding:10px 14px;border-radius:0 10px 10px 0;font-size:14px}
 
-  /* ---- families ---- */
-  .fam{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:760px){.fam{grid-template-columns:1fr}}
-  .fam .card{cursor:default}
-  .fam h3{margin:2px 0 6px;font-size:16px}
-  .tag{font:600 11px/1 var(--mono)}
-  .tag.loop{color:var(--green)} .tag.delib{color:var(--violet)} .tag.flow{color:var(--accent)}
-  .cmds{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-  .cmd{font:600 12px var(--mono);padding:5px 9px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);cursor:pointer;transition:.15s}
-  .cmd:hover{border-color:var(--accent)}
-  .cmd.sel{background:var(--accent);color:#06121f;border-color:transparent}
-  #cmdInfo{margin-top:14px;min-height:54px}
-  #cmdInfo .name{font:700 14px var(--mono);color:var(--accent)}
+  .tabs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .tab{font:600 13px var(--mono);padding:8px 12px;border-radius:10px;border:1px solid var(--line);
+    background:var(--panel2);color:var(--ink);cursor:pointer;transition:.15s;display:flex;align-items:center;gap:7px}
+  .tab:hover{border-color:var(--accent)}
+  .tab.sel{background:var(--accent);color:#06121f;border-color:transparent}
+  .tab .dot{width:8px;height:8px;border-radius:50%}
+  .dot.loop{background:var(--green)} .dot.delib{background:var(--violet)} .dot.flow{background:var(--accent)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12.5px;color:var(--mut);margin:-4px 0 14px}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .cmdhead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+  .cmdhead .nm{font:700 18px var(--mono);color:var(--accent)}
+  .fambadge{font:700 10px/1 var(--mono);letter-spacing:.08em;padding:5px 8px;border-radius:999px;text-transform:uppercase}
+  .fambadge.loop{color:var(--green);border:1px solid rgba(70,211,154,.4)}
+  .fambadge.delib{color:var(--violet);border:1px solid rgba(182,155,255,.4)}
+  .fambadge.flow{color:var(--accent);border:1px solid rgba(93,180,255,.4)}
+  .oneliner{font-size:16px;margin:6px 0 14px}
+  .block{margin:14px 0}
+  .block .lab{font:700 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mut);margin-bottom:7px}
+  .shines{border-left:3px solid var(--green);background:rgba(70,211,154,.06);padding:10px 14px;border-radius:0 10px 10px 0}
+  .uc{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:680px){.uc{grid-template-columns:1fr}}
+  .uc .u{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:12px}
+  .uc .u b{display:block;margin-bottom:4px;font-size:14px}
+  .uc .u span{font-size:13.5px;color:var(--mut)}
 
-  /* ---- decision guide ---- */
+  table.meta{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+  table.meta th,table.meta td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.meta th{color:var(--mut);font:600 12px var(--mono)}
+  table.meta td.n{font-family:var(--mono);white-space:nowrap}
+  .seq{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font:600 13px var(--mono);margin-top:8px}
+  .seq .s{padding:7px 11px;border-radius:8px;border:1px solid var(--line);background:var(--panel2)}
+  .seq .s.ground{border-color:var(--green);color:var(--green)}
+  .seq .arr{color:var(--mut)}
+
+  .anat{font-family:var(--mono);font-size:14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;overflow:auto;white-space:pre}
+  .a-k{color:var(--accent)} .a-m{color:var(--green)} .a-g{color:var(--amber)} .a-c{color:var(--mut)}
   .guide input.q{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--ink);
     border-radius:10px;padding:12px 14px;font:500 15px var(--sans)}
   .guide .row{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:11px 4px;border-bottom:1px solid var(--line)}
   .guide .want{color:var(--ink)} .guide .use{font:700 13px var(--mono);color:var(--accent);white-space:nowrap}
   .guide .row.hide{display:none}
-
-  /* anatomy */
-  .anat{font-family:var(--mono);font-size:14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:16px;overflow:auto}
-  .anat .a-k{color:var(--accent)} .anat .a-m{color:var(--green)} .anat .a-g{color:var(--amber)} .anat .a-c{color:var(--mut)}
-  footer{padding:40px 0 70px;color:var(--mut);font-size:13px}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
   @media(max-width:680px){.grid2{grid-template-columns:1fr}}
-  .lead-in{margin:2px 0 16px}
+  footer{padding:40px 0 70px;color:var(--mut);font-size:13px}
 </style>
 </head>
 <body>
@@ -107,16 +121,14 @@
   <header class="hero">
     <div class="kicker">Agentic engineering · interactive explainer</div>
     <h1>Autoresearch
-      <span class="sub">An autonomous engine that improves code by running one loop, over and over: <b>modify → verify → keep / discard</b> — against a number you choose.</span>
+      <span class="sub">An autonomous engine that improves work by running one loop, over and over: <b>modify → verify → keep / discard</b> — against a number you choose. Plus eleven sibling commands that think, vet, and audit.</span>
     </h1>
-    <p class="lede">The hard part isn't the loop. It's choosing the right <b>metric</b> to optimize and the right <b>guard</b> to protect. This page lets you <i>play</i> the loop, see why the guard matters, and learn which of the 12 commands to reach for. Built in the spirit of Simon Willison's <a href="https://simonwillison.net/guides/agentic-engineering-patterns/interactive-explanations/" target="_blank" rel="noopener">interactive explanations</a>.</p>
+    <p class="lede">The hard part isn't the loop — it's choosing the right <b>metric</b> to optimize and the right <b>guard</b> to protect. Play the loop below, then open any command to see how it works and 3–4 use cases for when to reach for it. In the spirit of Simon Willison's <a href="https://simonwillison.net/guides/agentic-engineering-patterns/interactive-explanations/" target="_blank" rel="noopener">interactive explanations</a>.</p>
   </header>
 
-  <!-- ============ THE LOOP ============ -->
   <section id="loop">
     <h2><span class="n">01</span>The loop, running</h2>
-    <p class="muted lead-in">Press <b>Play</b>. Each iteration proposes one change, re-runs <code>Verify</code> to get a new metric, checks the <code>Guard</code>, then <b class="s-keep">keeps</b>, <b class="s-discard">discards</b>, or <b class="s-crash">reverts</b>. Try toggling the <b>guard off</b> and watch what slips through.</p>
-
+    <p class="muted lead-in">Press <b>Play</b>. Each iteration proposes one change, re-runs <code>Verify</code> for a new metric, checks the <code>Guard</code>, then <b class="s-keep">keeps</b>, <b class="s-discard">discards</b>, or <b class="s-crash">reverts</b>. Toggle the <b>guard off</b> and watch a regression slip through — the single most important lesson on this page.</p>
     <div class="card sim">
       <div class="controls">
         <button class="ctl primary" id="play">▶ Play</button>
@@ -127,16 +139,12 @@
           <option value="coverage">Goal: raise test coverage · higher is better</option>
         </select>
         <label class="tog"><input type="checkbox" id="guard" checked> Guard on</label>
-        <span class="pill" id="speedlabel">speed&nbsp;</span>
+        <span class="pill">speed</span>
         <input type="range" id="speed" min="200" max="1400" value="650" step="50" style="width:120px" title="animation speed">
       </div>
-
       <div class="phases" id="phases"></div>
-
       <div class="sim-top">
-        <div>
-          <canvas id="chart" width="720" height="300" aria-label="metric over iterations"></canvas>
-        </div>
+        <div><canvas id="chart" width="720" height="300" aria-label="metric over iterations"></canvas></div>
         <div class="card" style="background:var(--panel2)">
           <div class="readout">
             <div class="muted" id="metricName">committed metric</div>
@@ -147,104 +155,84 @@
           </div>
         </div>
       </div>
-
-      <div id="leakWarn" class="warn" style="display:none">⚠ <b>Guard is off.</b> A change that improved the metric but <b>broke behavior</b> was just kept — a silent regression. This is the single most common way autoresearch loops go wrong.</div>
-
+      <div id="leakWarn" class="warn" style="display:none">⚠ <b>Guard is off.</b> A change that improved the metric but <b>broke behavior</b> was just kept — a silent regression. This is the most common way autoresearch loops go wrong.</div>
       <div class="logwrap">
         <table class="log" id="logtbl">
           <thead><tr><th>#</th><th>metric</th><th>Δ</th><th>guard</th><th>status</th><th>change</th></tr></thead>
           <tbody id="logbody"></tbody>
         </table>
       </div>
-      <div class="note">The log mirrors the real <code>results.tsv</code> the loop writes to disk — one row per iteration, so <kbd>git log</kbd> and the TSV together are a complete, replayable history of what worked.</div>
+      <div class="note">The log mirrors the real <code>results.tsv</code> the loop writes — one row per iteration, so <kbd>git log</kbd> + the TSV are a complete, replayable history of what worked.</div>
     </div>
   </section>
 
-  <!-- ============ GOLDEN RULE ============ -->
   <section id="rule">
     <h2><span class="n">02</span>The golden rule</h2>
     <div class="grid2">
       <div class="card">
-        <div class="tag loop">METRIC</div>
+        <div style="color:var(--accent);font:700 12px var(--mono)">METRIC</div>
         <h3 style="margin:6px 0">A command that prints one number.</h3>
-        <p class="muted" style="margin:0">The thing you want more (or less) of. Coverage %, token count, duplicated-lines %, p95 latency. If <code>Verify</code> doesn't emit a clean number, every iteration fails with <code>metric-error</code> and reverts.</p>
+        <p class="muted" style="margin:0">What you want more (or less) of: coverage %, token count, duplicated-lines %, p95 latency. If <code>Verify</code> doesn't emit a clean number, every iteration fails with <code>metric-error</code> and reverts.</p>
       </div>
       <div class="card">
-        <div class="tag delib" style="color:var(--green)">GUARD</div>
+        <div style="color:var(--green);font:700 12px var(--mono)">GUARD</div>
         <h3 style="margin:6px 0">A command that must stay green.</h3>
-        <p class="muted" style="margin:0">The behavior you must <i>not</i> break — your test suite, a type-check, an end-to-end run. Without it, the loop will happily make the metric look better while quietly breaking the product. <b>You saw this in §01.</b></p>
+        <p class="muted" style="margin:0">The behavior you must <i>not</i> break — your tests, a type-check, an end-to-end run. Without it the loop makes the metric look better while quietly breaking the product. <b>You saw this in §01.</b></p>
       </div>
     </div>
   </section>
 
-  <!-- ============ FAMILIES ============ -->
-  <section id="families">
-    <h2><span class="n">03</span>Twelve commands, three families</h2>
-    <p class="muted lead-in">Most misuse is reaching into the wrong family. Click a command to see what it's for.</p>
-    <div class="fam">
-      <div class="card">
-        <div class="tag loop">CONVERGENT LOOPS</div>
-        <h3>Iterate to a number</h3>
-        <p class="muted" style="font-size:14px;margin:0">Mutate code, commit per step, revert on regression. Need a metric + guard.</p>
-        <div class="cmds" data-fam="loop">
-          <span class="cmd" data-c="autoresearch">autoresearch</span>
-          <span class="cmd" data-c="fix">fix</span>
-          <span class="cmd" data-c="debug">debug</span>
-          <span class="cmd" data-c="security">security</span>
-          <span class="cmd" data-c="learn">learn</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="tag delib">DELIBERATIVE</div>
-        <h3>Think before you touch code</h3>
-        <p class="muted" style="font-size:14px;margin:0">Multi-persona analysis, requirement interrogation, setup. No mutation, no metric.</p>
-        <div class="cmds" data-fam="delib">
-          <span class="cmd" data-c="plan">plan</span>
-          <span class="cmd" data-c="predict">predict</span>
-          <span class="cmd" data-c="probe">probe</span>
-          <span class="cmd" data-c="reason">reason</span>
-          <span class="cmd" data-c="scenario">scenario</span>
-          <span class="cmd" data-c="evals">evals</span>
-        </div>
-      </div>
-      <div class="card">
-        <div class="tag flow">WORKFLOW</div>
-        <h3>Phase-gated process</h3>
-        <p class="muted" style="font-size:14px;margin:0">Run a whole procedure end to end.</p>
-        <div class="cmds" data-fam="flow">
-          <span class="cmd" data-c="ship">ship</span>
-          <span class="cmd" data-c="improve">improve</span>
-        </div>
-      </div>
+  <section id="commands">
+    <h2><span class="n">03</span>The twelve commands — what each is for</h2>
+    <p class="muted lead-in">Pick a command. Each shows how it works, where it shines, and 3–4 use cases for when to reach for it.</p>
+    <div class="legend">
+      <span><span class="dot loop" style="width:9px;height:9px;border-radius:50%"></span> Convergent loop — mutates code, needs a metric</span>
+      <span><span class="dot delib" style="width:9px;height:9px;border-radius:50%"></span> Deliberative — thinks, no mutation</span>
+      <span><span class="dot flow" style="width:9px;height:9px;border-radius:50%"></span> Workflow — phase-gated</span>
     </div>
-    <div class="card" id="cmdInfo"><span class="muted">Pick a command above.</span></div>
+    <div class="tabs" id="tabs"></div>
+    <div class="card" id="cmdPane"></div>
   </section>
 
-  <!-- ============ ANATOMY + CHAINING ============ -->
+  <section id="meta">
+    <h2><span class="n">04</span>The lesson that outranks the rest</h2>
+    <div class="card" style="border-color:rgba(70,211,154,.4)">
+      <h3 style="margin:0 0 6px">🧭 The grounding gate</h3>
+      <p class="muted" style="margin:0">These commands are only as good as how well they're anchored in the <b>real code and the real API</b>. A discovery or requirements run that leans on a summary instead of the source will <i>confidently</i> formalize a wrong premise. The single highest-leverage habit: <b>no recommendation without first reading the actual entry points and the external contracts it depends on.</b> Often the most valuable output of a discovery run is learning <i>what not to build</i> — before any code is written.</p>
+    </div>
+    <div class="block">
+      <div class="lab" style="margin-top:18px">A rule of thumb on which lenses to lean on</div>
+      <p class="muted" style="margin:0 0 8px">On an existing codebase, the <b>code-grounded lenses</b> (debug, security) tend to have the best signal-to-noise and rarely run out of things to find — they're usually <i>under</i>-run. The <b>discovery/requirements lenses</b> (improve, probe) saturate quickly and are the most sensitive to grounding. So front-load the grounding:</p>
+      <div class="seq">
+        <span class="s ground">debug / learn — ground in the real code</span><span class="arr">→</span>
+        <span class="s">improve — find direction</span><span class="arr">→</span>
+        <span class="s">probe — vet it</span><span class="arr">→</span>
+        <span class="s">security — pre-ship</span><span class="arr">→</span>
+        <span class="s">plan — sequence it</span><span class="arr">→</span>
+        <span class="s">autoresearch — build it</span>
+      </div>
+    </div>
+  </section>
+
   <section id="anatomy">
-    <h2><span class="n">04</span>Anatomy of a loop · and chaining</h2>
-    <div class="anat">
-<span class="a-c"># the four parts that make a loop safe and useful</span>
+    <h2><span class="n">05</span>Anatomy of a loop · and chaining</h2>
+    <div class="anat"><span class="a-c"># the four parts that make a loop safe and useful</span>
 /autoresearch <span class="a-c">\</span>
   <span class="a-k">Goal:</span>   cut token cost without losing answer quality
   <span class="a-m">Metric:</span> "your-cost-script"        <span class="a-c"># prints a number</span>
   Direction: lower_is_better
   <span class="a-m">Verify:</span> "your-cost-script"        <span class="a-c"># how the number is produced</span>
   <span class="a-g">Guard:</span>  "run-the-test-suite"      <span class="a-c"># must stay green</span>
-  Iterations: 25
-    </div>
+  Iterations: 25</div>
     <p class="muted" style="margin-top:16px">The deliberative commands shine as <b>front-ends</b> to a loop — <i>think, then iterate:</i></p>
-    <div class="anat" style="margin-top:8px">
-<span class="a-k">probe</span> → <span class="a-k">plan</span> → <span class="a-m">autoresearch</span>   <span class="a-c"># interrogate requirements, derive a metric, then loop</span>
+    <div class="anat" style="margin-top:8px"><span class="a-k">probe</span> → <span class="a-k">plan</span> → <span class="a-m">autoresearch</span>   <span class="a-c"># interrogate requirements, derive a metric, then loop</span>
 <span class="a-k">predict</span> → <span class="a-m">autoresearch</span>        <span class="a-c"># 5 experts vet a risky refactor before you iterate it</span>
 <span class="a-k">scenario</span> → <span class="a-m">autoresearch</span>       <span class="a-c"># generate edge cases, use pass-rate as the metric</span>
-<span class="a-k">debug</span> --fix                  <span class="a-c"># hunt the root cause and repair in one pass</span>
-    </div>
+<span class="a-k">debug</span> --fix                  <span class="a-c"># hunt the root cause and repair in one pass</span></div>
   </section>
 
-  <!-- ============ DECISION GUIDE ============ -->
   <section id="guide">
-    <h2><span class="n">05</span>Which one do I reach for?</h2>
+    <h2><span class="n">06</span>Which one do I reach for?</h2>
     <p class="muted lead-in">Filter by what you're trying to do.</p>
     <div class="card guide">
       <input class="q" id="q" placeholder="Type what you want to do… e.g. 'coverage', 'bug', 'security', 'decide'">
@@ -252,16 +240,15 @@
     </div>
   </section>
 
-  <!-- ============ ANTI-PATTERNS ============ -->
   <section id="anti">
-    <h2><span class="n">06</span>Five ways teams get it wrong</h2>
+    <h2><span class="n">07</span>Five ways teams get it wrong</h2>
     <div class="grid2">
       <div class="card"><b>Loop with no guard.</b><p class="muted" style="margin:6px 0 0">Silent behavior regressions. The metric looks great; the product breaks.</p></div>
       <div class="card"><b>A metric that isn't a number.</b><p class="muted" style="margin:6px 0 0">Every iteration reverts with <code>metric-error</code>. Verify must print one clean value.</p></div>
-      <div class="card"><b>Running on a dirty or shared branch.</b><p class="muted" style="margin:6px 0 0">Per-step commits collide. Give each loop its own worktree.</p></div>
+      <div class="card"><b>Skipping the grounding gate.</b><p class="muted" style="margin:6px 0 0">A discovery run on a summary instead of the source will confidently scope the wrong thing. Read real entry points first.</p></div>
       <div class="card"><b>Reaching for <code>fix</code> when you mean <code>debug</code>.</b><p class="muted" style="margin:6px 0 0">Fix crushes errors to zero; debug finds <i>why</i> they happen.</p></div>
+      <div class="card"><b>Treating "it already exists" as "fit for purpose".</b><p class="muted" style="margin:6px 0 0">A dormant capability may be stale or inadequate. Verify it's live and good enough before reusing.</p></div>
       <div class="card"><b>Deleting code a loop flagged as "dead".</b><p class="muted" style="margin:6px 0 0">It may be intentionally unused — feature-flagged or experimental. Gate removals through a human.</p></div>
-      <div class="card"><b>Optimizing prompt quality with no golden set.</b><p class="muted" style="margin:6px 0 0">You overfit to nothing. Build the fixtures first, then loop.</p></div>
     </div>
   </section>
 
@@ -272,217 +259,196 @@
 </div>
 
 <script>
-/* ----------------- simulation data ----------------- */
-const PHASES = ["Review","Modify","Commit","Verify","Guard","Decide","Log"];
-
-// Each iteration: candidate metric, whether guard passes, and the change description.
-// Decision is DERIVED at runtime from direction + guard toggle (so the guard toggle is honest).
-const SCENARIOS = {
-  tokens: {
-    name: "tokens per request", dir: "lower", base: 8200, fmt: v=>Math.round(v).toLocaleString(),
-    its: [
-      {m:7100, g:true,  d:"Trim prompt payload from 34 → 18 field properties"},
-      {m:6850, g:true,  d:"Drop whitespace in JSON serialization"},
-      {m:6720, g:true,  d:"Raise table chunk size 5 → 8 per call"},
-      {m:7400, g:true,  d:"Summarize role permissions instead of full dump"},
-      {m:6010, g:false, d:"Remove HelpText from payload — breaks 2 accuracy tests"},
-      {m:5980, g:true,  d:"Cache the static instruction block (prompt caching)"},
-      {m:6090, g:true,  d:"Collapse duplicate table descriptions"},
-      {m:5740, g:true,  d:"Tighten system-prompt wording"},
-      {m:5600, g:true,  d:"Batch role + table calls into one request"}
-    ]
-  },
-  coverage: {
-    name: "statement coverage %", dir: "higher", base: 72.0, fmt: v=>v.toFixed(1)+"%",
-    its: [
-      {m:78.5, g:true,  d:"Add tests for record-import chunking"},
-      {m:80.1, g:true,  d:"Cover error branch in sampling service"},
-      {m:79.0, g:true,  d:"Add agent-context init test"},
-      {m:83.2, g:true,  d:"Test formula-parser edge cases"},
-      {m:82.0, g:false, d:"Refactor + drop a branch — a flow test now fails"},
-      {m:85.4, g:true,  d:"Cover relationship detection"},
-      {m:87.1, g:true,  d:"Add orientation-strategy tests"}
-    ]
-  }
+const PHASES=["Review","Modify","Commit","Verify","Guard","Decide","Log"];
+const SCENARIOS={
+  tokens:{name:"tokens per request",dir:"lower",base:8200,fmt:v=>Math.round(v).toLocaleString(),
+    its:[
+      {m:7100,g:true, d:"Trim prompt payload from 34 → 18 fields"},
+      {m:6850,g:true, d:"Drop whitespace in JSON serialization"},
+      {m:6720,g:true, d:"Raise chunk size 5 → 8 per call"},
+      {m:7400,g:true, d:"Summarize instead of full dump"},
+      {m:6010,g:false,d:"Remove help text — breaks 2 accuracy tests"},
+      {m:5980,g:true, d:"Cache the static instruction block"},
+      {m:6090,g:true, d:"Collapse duplicate descriptions"},
+      {m:5740,g:true, d:"Tighten system-prompt wording"},
+      {m:5600,g:true, d:"Batch two calls into one request"}
+    ]},
+  coverage:{name:"statement coverage %",dir:"higher",base:72.0,fmt:v=>v.toFixed(1)+"%",
+    its:[
+      {m:78.5,g:true, d:"Add tests for the chunking path"},
+      {m:80.1,g:true, d:"Cover an error branch"},
+      {m:79.0,g:true, d:"Add an init test"},
+      {m:83.2,g:true, d:"Test parser edge cases"},
+      {m:82.0,g:false,d:"Refactor + drop a branch — a test now fails"},
+      {m:85.4,g:true, d:"Cover the detection path"},
+      {m:87.1,g:true, d:"Add strategy tests"}
+    ]}
 };
+let scen="tokens",guardOn=true,playing=false,iter=0,phase=-1,committed,history,timer=null,speed=650;
+const $=id=>document.getElementById(id);
+const S=()=>SCENARIOS[scen];
+const improved=(c,p)=>S().dir==="lower"?c<p:c>p;
+function resetSim(){stop();committed=S().base;history=[{i:0,m:committed}];iter=0;phase=-1;$("logbody").innerHTML="";$("metricName").textContent="committed "+S().name;$("metricVal").textContent=S().fmt(committed);$("delta").innerHTML="&nbsp;";$("iterNo").textContent="0";$("iterDesc").textContent="baseline";$("decision").innerHTML="";$("leakWarn").style.display="none";renderPhases(-1);drawChart();}
+function renderPhases(a){const el=$("phases");el.innerHTML="";PHASES.forEach((p,i)=>{const d=document.createElement("div");d.className="phase"+(p==="Guard"?" guard":"")+(i===a?" active":"");d.textContent=(i+1)+". "+p;el.appendChild(d);});}
+function tick(){if(iter>=S().its.length){stop();return;}phase++;if(phase===0){const it=S().its[iter];$("iterNo").textContent=String(iter+1);$("iterDesc").textContent=it.d;$("decision").innerHTML="";}renderPhases(phase);if(phase>=PHASES.length-1){finalize();phase=-1;iter++;}}
+function finalize(){const it=S().its[iter],prev=committed,better=improved(it.m,prev);let status,kept=false,leak=false;if(guardOn){if(!it.g)status="crash";else if(better){status="keep";kept=true;}else status="discard";}else{if(better){status="keep";kept=true;if(!it.g)leak=true;}else status="discard";}if(kept)committed=it.m;history.push({i:iter+1,m:committed,status,leak});$("metricVal").textContent=S().fmt(committed);const delta=committed-prev,goodDir=S().dir==="lower"?delta<0:delta>0;$("delta").className="delta "+(delta===0?"":(goodDir?"up":"down"));$("delta").textContent=delta===0?"no change":(goodDir?"▼ improved ":"▲ worse ")+(S().name.includes("%")?Math.abs(delta).toFixed(1)+" pp":S().fmt(Math.abs(delta)));const bt={keep:"KEEP ✓",discard:"DISCARD ⟲ revert",crash:"CRASH ⟲ revert"}[status];$("decision").innerHTML='<span class="badge '+status+'">'+bt+'</span>'+(leak?' <span class="badge leak">⚠ behavior broke — kept anyway</span>':'');$("leakWarn").style.display=leak?"block":"none";const tr=document.createElement("tr");const gtxt=it.g?'<span class="s-keep">pass</span>':'<span class="s-crash">FAIL</span>';tr.innerHTML='<td>'+(iter+1)+'</td><td>'+S().fmt(it.m)+'</td><td class="'+(better?'s-keep':'s-discard')+'">'+(better?'▼':'▲')+'</td><td>'+(guardOn?gtxt:'<span class="muted">off</span>')+'</td><td class="s-'+status+'">'+status+(leak?' ⚠':'')+'</td><td class="desc">'+it.d+'</td>';$("logbody").appendChild(tr);$("logbody").parentElement.parentElement.scrollTop=99999;drawChart();}
+function drawChart(){const c=$("chart"),ctx=c.getContext("2d"),W=c.width,H=c.height,pL=58,pR=18,pT=18,pB=30;ctx.clearRect(0,0,W,H);const its=S().its.length,vals=history.map(h=>h.m).concat([S().base]);let lo=Math.min(...vals),hi=Math.max(...vals);const sp=(hi-lo)||1;lo-=sp*0.15;hi+=sp*0.15;const X=i=>pL+(W-pL-pR)*(i/its),Y=v=>pT+(H-pT-pB)*(1-(v-lo)/(hi-lo));ctx.strokeStyle="#27303f";ctx.fillStyle="#8b97a8";ctx.font="11px ui-monospace,monospace";ctx.lineWidth=1;for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4,y=Y(v);ctx.beginPath();ctx.moveTo(pL,y);ctx.lineTo(W-pR,y);ctx.stroke();ctx.fillText(S().fmt(v),6,y+3);}ctx.strokeStyle="rgba(139,151,168,.45)";ctx.setLineDash([4,4]);ctx.beginPath();ctx.moveTo(pL,Y(S().base));ctx.lineTo(W-pR,Y(S().base));ctx.stroke();ctx.setLineDash([]);ctx.fillText("baseline",W-pR-58,Y(S().base)-5);ctx.strokeStyle="#5db4ff";ctx.lineWidth=2.5;ctx.beginPath();history.forEach((h,i)=>{const x=X(h.i),y=Y(h.m);i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();history.forEach(h=>{const x=X(h.i),y=Y(h.m);let col="#5db4ff";if(h.status==="keep")col="#46d39a";else if(h.status==="discard")col="#f4b740";else if(h.status==="crash")col="#ff6b6b";if(h.leak)col="#ff6b6b";ctx.fillStyle=col;ctx.beginPath();ctx.arc(x,y,h.leak?5:4,0,7);ctx.fill();if(h.leak){ctx.strokeStyle="#ff6b6b";ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(x,y,8,0,7);ctx.stroke();}});ctx.fillStyle="#8b97a8";ctx.fillText("iteration →",W-pR-70,H-8);}
+function play(){if(playing)return;if(iter>=S().its.length)resetSim();playing=true;$("play").textContent="⏸ Pause";$("play").classList.remove("primary");loopRun();}
+function stop(){playing=false;if(timer){clearTimeout(timer);timer=null;}const b=$("play");if(b){b.textContent="▶ Play";b.classList.add("primary");}}
+function loopRun(){if(!playing)return;tick();if(iter>=S().its.length&&phase===-1){stop();return;}timer=setTimeout(loopRun,phase===-1?speed*1.3:speed);}
+$("play").onclick=()=>playing?stop():play();
+$("step").onclick=()=>{stop();if(iter>=S().its.length)return;do{tick();}while(phase!==-1);};
+$("reset").onclick=resetSim;
+$("scenario").onchange=e=>{scen=e.target.value;resetSim();};
+$("guard").onchange=e=>{guardOn=e.target.checked;document.querySelector("label.tog").lastChild.textContent=guardOn?" Guard on":" Guard off";};
+$("speed").oninput=e=>{speed=1600-Number(e.target.value);};
 
-/* ----------------- state ----------------- */
-let scen = "tokens", guardOn = true, playing = false;
-let iter = 0, phase = -1, committed, history, timer = null, speed = 650;
-
-const $ = id => document.getElementById(id);
-function S(){ return SCENARIOS[scen]; }
-function improved(cand, prev){ return S().dir==="lower" ? cand < prev : cand > prev; }
-
-function resetSim(){
-  stop();
-  committed = S().base;
-  history = [{i:0, m:committed}];
-  iter = 0; phase = -1;
-  $("logbody").innerHTML = "";
-  $("metricName").textContent = "committed " + S().name;
-  $("metricVal").textContent = S().fmt(committed);
-  $("delta").innerHTML = "&nbsp;";
-  $("iterNo").textContent = "0";
-  $("iterDesc").textContent = "baseline";
-  $("decision").innerHTML = "";
-  $("leakWarn").style.display = "none";
-  renderPhases(-1);
-  drawChart();
+const COMMANDS=[
+ {k:"autoresearch",fam:"loop",famL:"Convergent loop",
+  one:"The engine. Optimize anything you can print as a number — keep the wins, revert the rest.",
+  how:"You give it Scope, a Metric (a command that prints a number), a Direction, a Verify command, and a Guard. It loops: change → verify → keep if better &amp; guard green, else revert. Add <code>Iterations:N</code> to bound it.",
+  shines:"Mechanical, measurable goals with a strong behavioral guard. If you can write a script that prints the number you care about and a command that proves you didn't break anything, this is the tool.",
+  uc:[
+   ["Cut token cost","Lower the tokens a feature spends per request. Metric: a token-count script. Guard: accuracy tests."],
+   ["Raise coverage to the gate","Climb toward a coverage threshold. Metric: jest coverage %. Guard: the test suite."],
+   ["Harden types","Drive the count of unsafe casts / non-null assertions toward zero. Guard: typecheck + tests."],
+   ["Build a feature to a spec","Implement against an eval score — measurable and regression-guarded."]
+  ]},
+ {k:"plan",fam:"delib",famL:"Deliberative",
+  one:"Turn a fuzzy goal into a validated Scope / Metric / Direction / Verify config — no code touched.",
+  how:"An interactive (or inline) wizard that pins down exactly what to optimize and how to measure it, so the loop that follows is safe and meaningful.",
+  shines:"The bridge between \"I want this better\" and a runnable loop. Best when you have a direction but not yet a number, or when several research threads need folding into one build order.",
+  uc:[
+   ["You don't know the metric yet","\"Make this cheaper\" → plan derives a measurable metric and a guard."],
+   ["Pre-flight before a loop","Make sure Verify prints a real number and Guard truly protects behavior."],
+   ["Consolidate research into a build order","Fold predict + reason + evals outputs into one phased plan."],
+   ["Sequence interacting changes","When fixes and features touch the same code, plan resolves the order."]
+  ]},
+ {k:"debug",fam:"loop",famL:"Convergent loop",
+  one:"Hunt bugs the scientific way: hypothesize → test → falsify → repeat. Add --fix to repair.",
+  how:"Autonomously forms hypotheses about latent defects and checks each against the real source, citing file:line.",
+  shines:"Mature code whose weaknesses are checkable against the source — exactly where autonomous hypothesis-testing thrives. Tends to keep finding real defects long after you'd expect it to stop.",
+  uc:[
+   ["Hunt latent bugs in mature code","Point it at a feature and let it falsify hypotheses against the source."],
+   ["Open a new feature by grounding first","A quick debug/learn pass maps reality before discovery work."],
+   ["Reproduce-then-fix a symptom","Give it a symptom + --fix to diagnose and repair in one pass."],
+   ["Audit a parsing / perception layer","Where inputs are checkable, hypothesis-testing pays off."]
+  ]},
+ {k:"fix",fam:"loop",famL:"Convergent loop",
+  one:"Crush errors one-by-one until zero remain: tests, types, lint, build.",
+  how:"The metric is the error count; it iterates until zero, guarded so it can't trade one failure for another. <code>--from-debug</code> takes a debug run's findings as the worklist.",
+  shines:"Getting a red board green. Clear, countable failures and a definition of done (zero) it can march toward.",
+  uc:[
+   ["Zero out errors after a big refactor","Tests + types + lint + build, all green."],
+   ["Crush violations from a stricter rule","Enable a new lint rule, then let fix clean up the fallout."],
+   ["Pass a quality gate","Get a feature over the coverage / lint bar before merge."],
+   ["Repair a debug run","--from-debug turns confirmed findings into a fix worklist."]
+  ]},
+ {k:"security",fam:"loop",famL:"Convergent loop",
+  one:"STRIDE + OWASP audit with red-team personas. --diff for a PR, --fix to patch.",
+  how:"Walks STRIDE and OWASP categories adversarially against the real call graph, rating findings by severity.",
+  shines:"Surfaces controls that are <i>claimed</i> but may be absent, and reasons about untrusted-input and code-execution surfaces — the gaps a comment-trusting reader misses.",
+  uc:[
+   ["Audit an agent / code-exec surface","Sandbox, prompt-injection, untrusted input — before it ships."],
+   ["Gate a new input channel","Make a clean audit a precondition for expanding what users can feed the system."],
+   ["Review just a PR","--diff scopes the audit to the change set."],
+   ["Re-audit after adding untrusted input","New free-text into a model context → re-run."]
+  ]},
+ {k:"predict",fam:"delib",famL:"Deliberative",
+  one:"5 expert personas debate a proposed change before you implement it.",
+  how:"Eng lead, AI skeptic, security, product, and maintainability personas argue the change set, surface disagreements, and converge on sequencing and gates.",
+  shines:"Catching cross-cutting objections — and especially <b>mis-sequencing</b> — while they're still cheap to act on, before a line of code is written.",
+  uc:[
+   ["Vet a risky change before coding","Catch cross-cutting objections while they're cheap."],
+   ["Decide build order","When changes interact, let the personas argue the sequence."],
+   ["Surface eng-vs-security-vs-product tension","Get the disagreement on the table early."],
+   ["Pre-flight a refactor","e.g. parallelizing a sequential path."]
+  ]},
+ {k:"probe",fam:"delib",famL:"Deliberative",
+  one:"8 personas interrogate requirements until hidden constraints stop appearing.",
+  how:"Adversarial Q&amp;A that converts assumptions into decisions and saturates when net-new constraints drop near zero. Run it autonomously <i>after</i> a code/API read.",
+  shines:"Turning vague requirements into concrete decisions and surfacing contradictions — and proving early what's feasible vs impossible, so you don't spec something the platform can't do.",
+  uc:[
+   ["Vet a spec for feasibility","Interrogate it against the real API before estimation."],
+   ["Surface contradictions early","Find the requirements that fight each other."],
+   ["Turn assumptions into decisions","Cheaply — and treat de-scopes as wins."],
+   ["De-risk before a PRD","Stop yourself writing requirements the platform can't meet."]
+  ]},
+ {k:"reason",fam:"delib",famL:"Deliberative",
+  one:"Adversarial debate with blind judges until it converges on a decision.",
+  how:"Competing positions are argued and scored by blind judges across rounds until a winner is stable.",
+  shines:"Subjective or contested calls — thresholds, naming, design trade-offs — where you want a defensible decision <i>and</i> the dissent recorded rather than erased.",
+  uc:[
+   ["Settle a subjective decision","Thresholds, naming, design trade-offs."],
+   ["Resolve a flagged contradiction","Turn a conflict into a concrete rule."],
+   ["Choose between two designs","e.g. extend a component vs add a new one."],
+   ["Record dissent deliberately","Keep the minority view for later revisiting."]
+  ]},
+ {k:"scenario",fam:"delib",famL:"Deliberative",
+  one:"Generate edge cases across 12 dimensions from one seed scenario.",
+  how:"Systematically walks dimensions — happy path, validation, permissions, concurrency, state, scale, failure, security, integration, data, UX, recovery — with a guard/test per case.",
+  shines:"Systematic breadth — surfacing the edge cases targeted brainstorming and even a focused bug-hunt won't think of, because it forces coverage of every dimension.",
+  uc:[
+   ["Build a robustness / test backlog","Systematic coverage beyond what you'd brainstorm."],
+   ["Seed a golden fixture set","Turn scenarios into the fixtures a loop's metric scores against."],
+   ["Stress-test a user journey","--depth deep on the critical flow."],
+   ["Find what targeted debugging missed","Dimension coverage surfaces blind spots."]
+  ]},
+ {k:"learn",fam:"loop",famL:"Convergent loop",
+  one:"Scout the codebase and auto-generate docs with a validate-then-fix loop.",
+  how:"Reads the code and produces grounded documentation, validating claims as it goes. Modes: init / update / check / summarize.",
+  shines:"Producing onboarding docs that describe the code <i>as it is</i>, not as the comments claim — best as a capstone over verified findings, or a first map of an unfamiliar codebase (treated as a map to verify).",
+  uc:[
+   ["Onboard people to a feature","One grounded reference instead of tribal knowledge."],
+   ["Capstone an engagement","Consolidate verified findings into living docs (best run last)."],
+   ["Open an unfamiliar codebase","But treat the output as a map to verify, not ground truth."],
+   ["Refresh docs after a change","update mode keeps them current."]
+  ]},
+ {k:"improve",fam:"flow",famL:"Workflow",
+  one:"Research ICP challenges, discover improvements, generate PRDs.",
+  how:"Scans market / ICP / competitor signals for a product area and emits ranked opportunities and draft PRDs. Discovery, not code.",
+  shines:"Breadth on demand — surfacing competitor gaps and opportunities faster than manual research. It is also the <b>most grounding-dependent</b> command: always pair it with a code/API read before trusting the output.",
+  uc:[
+   ["Decide what to build next","Market/ICP discovery for a feature area."],
+   ["Find a competitor gap","Something rivals don't do that you can."],
+   ["Draft PRDs fast","Turn a direction into reviewable proposals."],
+   ["⚠ Always ground it","Follow with a source/API read before trusting the output."]
+  ]},
+ {k:"evals",fam:"delib",famL:"Deliberative",
+  one:"Analyze iteration results: trends, plateaus, regressions, recommendations.",
+  how:"Reads a loop's results.tsv (or a set of runs) and reports value-per-iteration, saturation, and what to do next.",
+  shines:"Knowing when to stop — spotting saturation, plateaus, and regressions — and deciding how much depth each lens deserves next time.",
+  uc:[
+   ["Decide when to stop a loop","Spot saturation instead of burning iterations."],
+   ["Catch a plateau or regression mid-run","Checkpoint a long loop."],
+   ["Budget the next engagement","How much depth each lens deserves."],
+   ["Compare runs","Which lens paid off on this codebase?"]
+  ]},
+ {k:"ship",fam:"flow",famL:"Workflow",
+  one:"Ship anything through 8 phases: checklist, dry-run, deploy, verify, monitor.",
+  how:"A phase-gated release workflow with checklist, dry-run, deploy, verification and monitoring; <code>--rollback</code> and <code>--checklist-only</code> modes.",
+  shines:"Turning \"it's built\" into \"it's safely released\" with a repeatable, gated procedure and a rollback path.",
+  uc:[
+   ["Release a PR or deployment","Walk the full checklist → deploy → verify."],
+   ["Check readiness only","--checklist-only before committing to a release."],
+   ["Ship with a rollback plan","Built-in --rollback path."],
+   ["Monitor after deploy","Watch the verify window for N minutes."]
+  ]}
+];
+const tabsEl=$("tabs"),paneEl=$("cmdPane");
+function renderPane(c){
+  const ucs=c.uc.map(([t,d])=>'<div class="u"><b>'+t+'</b><span>'+d+'</span></div>').join("");
+  paneEl.innerHTML=
+   '<div class="cmdhead"><span class="nm">/autoresearch'+(c.k==="autoresearch"?"":":"+c.k)+'</span>'+
+     '<span class="fambadge '+c.fam+'">'+c.famL+'</span></div>'+
+   '<div class="oneliner">'+c.one+'</div>'+
+   '<div class="block"><div class="lab">How it works</div><div class="muted">'+c.how+'</div></div>'+
+   '<div class="block"><div class="lab">Where it shines</div><div class="shines">'+c.shines+'</div></div>'+
+   '<div class="block"><div class="lab">Use cases — when &amp; how to reach for it</div><div class="uc">'+ucs+'</div></div>';
 }
+COMMANDS.forEach((c,i)=>{const t=document.createElement("div");t.className="tab"+(i===0?" sel":"");t.innerHTML='<span class="dot '+c.fam+'"></span>'+(c.k==="autoresearch"?"autoresearch":":"+c.k);t.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("sel"));t.classList.add("sel");renderPane(c);};tabsEl.appendChild(t);});
+renderPane(COMMANDS[0]);
 
-function renderPhases(active){
-  const el = $("phases"); el.innerHTML = "";
-  PHASES.forEach((p,i)=>{
-    const d = document.createElement("div");
-    d.className = "phase" + (p==="Guard"?" guard":"") + (i===active?" active":"");
-    d.textContent = (i+1)+". "+p;
-    el.appendChild(d);
-  });
-}
-
-/* advance one phase; finalize iteration at the Log phase */
-function tick(){
-  if(iter >= S().its.length){ stop(); return; }
-  phase++;
-  if(phase === 0){
-    const it = S().its[iter];
-    $("iterNo").textContent = String(iter+1);
-    $("iterDesc").textContent = it.d;
-    $("decision").innerHTML = "";
-  }
-  renderPhases(phase);
-  if(phase >= PHASES.length-1){ finalize(); phase = -1; iter++; }
-}
-
-function finalize(){
-  const it = S().its[iter];
-  const prev = committed;
-  const better = improved(it.m, prev);
-  let status, kept=false, leak=false;
-
-  if(guardOn){
-    if(!it.g){ status="crash"; }            // guard fails → revert no matter what
-    else if(better){ status="keep"; kept=true; }
-    else { status="discard"; }
-  } else {
-    // guard ignored: keep purely on metric
-    if(better){ status="keep"; kept=true; if(!it.g) leak=true; }
-    else { status="discard"; }
-  }
-
-  if(kept) committed = it.m;
-  history.push({i:iter+1, m:committed, status, leak});
-
-  // readout
-  $("metricVal").textContent = S().fmt(committed);
-  const delta = committed - prev;
-  const goodDir = S().dir==="lower" ? delta<0 : delta>0;
-  $("delta").className = "delta " + (delta===0?"":(goodDir?"up":"down"));
-  $("delta").textContent = delta===0 ? "no change"
-     : (goodDir?"▼ improved ":"▲ worse ") + (S().name.includes("%") ? Math.abs(delta).toFixed(1)+" pp" : S().fmt(Math.abs(delta)));
-
-  const badgeTxt = {keep:"KEEP ✓", discard:"DISCARD ⟲ revert", crash:"CRASH ⟲ revert"}[status];
-  $("decision").innerHTML = '<span class="badge '+status+'">'+badgeTxt+'</span>' +
-     (leak ? ' <span class="badge leak">⚠ behavior broke — kept anyway</span>' : '');
-  $("leakWarn").style.display = leak ? "block" : "none";
-
-  // log row
-  const tr = document.createElement("tr");
-  const gtxt = it.g ? '<span class="s-keep">pass</span>' : '<span class="s-crash">FAIL</span>';
-  tr.innerHTML = '<td>'+(iter+1)+'</td><td>'+S().fmt(it.m)+'</td>'+
-    '<td class="'+(better?'s-keep':'s-discard')+'">'+(better?'▼':'▲')+'</td>'+
-    '<td>'+(guardOn?gtxt:'<span class="muted">off</span>')+'</td>'+
-    '<td class="s-'+status+'">'+status+(leak?' ⚠':'')+'</td>'+
-    '<td class="desc">'+it.d+'</td>';
-  $("logbody").appendChild(tr);
-  $("logbody").parentElement.parentElement.scrollTop = 99999;
-
-  drawChart();
-}
-
-/* ----------------- chart ----------------- */
-function drawChart(){
-  const c = $("chart"), ctx = c.getContext("2d");
-  const W=c.width, H=c.height, padL=58, padR=18, padT=18, padB=30;
-  ctx.clearRect(0,0,W,H);
-  const its = S().its.length;
-  const vals = history.map(h=>h.m).concat([S().base]);
-  let lo=Math.min(...vals), hi=Math.max(...vals);
-  const span=(hi-lo)||1; lo-=span*0.15; hi+=span*0.15;
-  const X = i => padL + (W-padL-padR) * (i/its);
-  const Y = v => padT + (H-padT-padB) * (1-(v-lo)/(hi-lo));
-
-  // grid + axis labels
-  ctx.strokeStyle="#27303f"; ctx.fillStyle="#8b97a8"; ctx.font="11px ui-monospace,monospace"; ctx.lineWidth=1;
-  for(let k=0;k<=4;k++){
-    const v=lo+(hi-lo)*k/4, y=Y(v);
-    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
-    ctx.fillText(S().fmt(v), 6, y+3);
-  }
-  // baseline reference
-  ctx.strokeStyle="rgba(139,151,168,.45)"; ctx.setLineDash([4,4]);
-  ctx.beginPath();ctx.moveTo(padL,Y(S().base));ctx.lineTo(W-padR,Y(S().base));ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.fillText("baseline", W-padR-58, Y(S().base)-5);
-
-  // committed line
-  ctx.strokeStyle="#5db4ff"; ctx.lineWidth=2.5; ctx.beginPath();
-  history.forEach((h,idx)=>{ const x=X(h.i),y=Y(h.m); idx?ctx.lineTo(x,y):ctx.moveTo(x,y); });
-  ctx.stroke();
-
-  // points
-  history.forEach(h=>{
-    const x=X(h.i),y=Y(h.m);
-    let col="#5db4ff";
-    if(h.status==="keep")col="#46d39a"; else if(h.status==="discard")col="#f4b740"; else if(h.status==="crash")col="#ff6b6b";
-    if(h.leak)col="#ff6b6b";
-    ctx.fillStyle=col; ctx.beginPath(); ctx.arc(x,y,h.leak?5:4,0,7); ctx.fill();
-    if(h.leak){ ctx.strokeStyle="#ff6b6b"; ctx.lineWidth=1.5; ctx.beginPath(); ctx.arc(x,y,8,0,7); ctx.stroke(); }
-  });
-  // x label
-  ctx.fillStyle="#8b97a8";
-  ctx.fillText("iteration →", W-padR-70, H-8);
-}
-
-/* ----------------- controls ----------------- */
-function play(){ if(playing) return; if(iter>=S().its.length) resetSim(); playing=true; $("play").textContent="⏸ Pause"; $("play").classList.remove("primary"); loop(); }
-function stop(){ playing=false; if(timer){clearTimeout(timer);timer=null;} const b=$("play"); if(b){b.textContent="▶ Play"; b.classList.add("primary");} }
-function loop(){ if(!playing) return; tick(); if(iter>=S().its.length && phase===-1){ stop(); return; } timer=setTimeout(loop, phase===-1? speed*1.3 : speed); }
-
-$("play").onclick = ()=> playing? stop() : play();
-$("step").onclick = ()=>{ stop(); if(iter>=S().its.length) return; do{ tick(); }while(phase!==-1); };
-$("reset").onclick = resetSim;
-$("scenario").onchange = e=>{ scen=e.target.value; resetSim(); };
-$("guard").onchange = e=>{ guardOn=e.target.checked; e.target.parentElement.firstChild; document.querySelector("label.tog").lastChild.textContent = guardOn? " Guard on":" Guard off"; };
-$("speed").oninput = e=>{ speed = 1600 - Number(e.target.value); };
-
-/* ----------------- families ----------------- */
-const CMD = {
-  autoresearch:["autoresearch","The engine. Optimize any metric you can print as a number. Add Iterations:N to bound it."],
-  fix:["fix","Crush errors — tests, types, lint, build — until zero remain. Metric is the error count."],
-  debug:["debug","Scientific-method bug hunt: hypothesize → test → falsify → repeat. Add --fix to repair."],
-  security:["security","STRIDE + OWASP audit with red-team personas. --fix to patch, --fail-on to gate severity."],
-  learn:["learn","Scout the codebase and auto-generate docs, with a validate-then-fix loop. init / update / check."],
-  plan:["plan","Turn a fuzzy goal into a validated Scope / Metric / Direction / Verify config. No code touched."],
-  predict:["predict","5 expert personas debate a proposed change before you implement it. Great pre-flight for risky work."],
-  probe:["probe","8 personas interrogate requirements until hidden constraints stop appearing."],
-  reason:["reason","Adversarial debate judged by a blind panel until it converges. Good for subjective decisions."],
-  scenario:["scenario","Generate edge cases across 12 dimensions from one seed scenario."],
-  evals:["evals","Read a loop's results.tsv and report trends, plateaus, regressions, and what to try next."],
-  ship:["ship","Take anything through 8 phases: checklist, dry-run, deploy, verify, monitor."],
-  improve:["improve","Research ICP challenges, discover improvement ideas, and generate PRDs. Discovery, not code."]
-};
-document.querySelectorAll(".cmd").forEach(el=>{
-  el.onclick=()=>{
-    document.querySelectorAll(".cmd").forEach(x=>x.classList.remove("sel"));
-    el.classList.add("sel");
-    const [n,desc]=CMD[el.dataset.c];
-    $("cmdInfo").innerHTML='<span class="name">/autoresearch'+(n==="autoresearch"?"":":"+n)+'</span><div style="margin-top:6px" class="muted">'+desc+'</div>';
-  };
-});
-
-/* ----------------- decision guide ----------------- */
 const GUIDE=[
   ["Improve any number — tokens, coverage, duplication, latency","/autoresearch"],
   ["I don't know what metric to use yet","/autoresearch:plan"],
@@ -499,20 +465,11 @@ const GUIDE=[
   ["Product discovery → PRDs for what to build next","/autoresearch:improve"]
 ];
 const gr=$("guideRows");
-GUIDE.forEach(([w,u])=>{
-  const r=document.createElement("div"); r.className="row";
-  r.innerHTML='<span class="want">'+w+'</span><span class="use">'+u+'</span>';
-  r.dataset.s=(w+" "+u).toLowerCase();
-  gr.appendChild(r);
-});
-$("q").oninput=e=>{
-  const q=e.target.value.toLowerCase().trim();
-  [...gr.children].forEach(r=> r.classList.toggle("hide", q && !r.dataset.s.includes(q)));
-};
+GUIDE.forEach(([w,u])=>{const r=document.createElement("div");r.className="row";r.innerHTML='<span class="want">'+w+'</span><span class="use">'+u+'</span>';r.dataset.s=(w+" "+u).toLowerCase();gr.appendChild(r);});
+$("q").oninput=e=>{const q=e.target.value.toLowerCase().trim();[...gr.children].forEach(r=>r.classList.toggle("hide",q&&!r.dataset.s.includes(q)));};
 
-/* boot */
 resetSim();
-window.addEventListener("resize", drawChart);
+window.addEventListener("resize",drawChart);
 </script>
 </body>
 </html>
