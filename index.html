@@ -248,7 +248,7 @@
       <h3 style="margin:0 0 6px">🧭 The grounding gate</h3>
       <p class="muted" style="margin:0">These commands are only as good as how well they're anchored in the <b>real code and the real API</b>. A discovery or requirements run that leans on a summary instead of the source will <i>confidently</i> formalize a wrong premise. The highest-leverage habit: <b>no recommendation without first reading the actual entry points and the external contracts it depends on.</b> Often the most valuable output of a discovery run is learning <i>what not to build</i> — before any code is written.</p>
     </div>
-    <p class="muted" style="margin:16px 0 8px">Rule of thumb: on existing code, the <b>code-grounded lenses</b> (debug, security) have the best signal and are usually <i>under</i>-run; the <b>discovery lenses</b> (improve, probe) saturate fast and depend most on grounding. So front-load it:</p>
+    <p class="muted" style="margin:16px 0 8px">Rule of thumb: <b>match the lens to the code's maturity.</b> On experimental or complex code, the <b>code-grounded lenses</b> (debug, security) have the best signal and are usually <i>under</i>-run. On mature, clean code they mostly <i>confirm health</i> — the marginal value shifts to <b>scenario</b> (robustness gaps) and the <b>optimization loop</b>. (The value of bug/security hunting is proportional to defect density, which tracks how new and complex the code is.) Either way, front-load the grounding:</p>
     <div class="anat"><span class="a-m">debug / learn</span>  <span class="a-c">→</span>  improve  <span class="a-c">→</span>  probe  <span class="a-c">→</span>  security  <span class="a-c">→</span>  plan  <span class="a-c">→</span>  <span class="a-k">autoresearch (build)</span></div>
   </section>
 
